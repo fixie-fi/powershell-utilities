@@ -22,7 +22,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #>
 
 # Configuration file
-$ConfigFile = "D:\config.ini"
+$ConfigFile = "config.ini"
 
 # Load configuration
 Function LoadSettings {
@@ -59,6 +59,8 @@ $Config = LoadSettings($ConfigFile)
     from, the event source, the number of events to retrieve, and more. This script
     could be particularly useful as a scheduled task that is triggered off of an
     event.
+
+    Inspiration from: http://blachniet.com/blog/event-log-email-alerts-with-powershell/
 
     .EXAMPLE
     Send-EventEntryEmail -eventChannel $(eventChannel) -eventComputer $(eventComputer) -eventID $(eventID) -EventRecordID $(EventRecordID) -eventKeywords $(eventKeywords) -eventLevel $(eventLevel) -eventProvider $(eventProvider) -eventTask $(eventTask) -eventTimeCreated $(eventTimeCreated) -EventData $(EventData)
@@ -157,8 +159,7 @@ Function Send-EventEntryEmail {
     }
 
     $email = createEmail($eventEntries)
-    #$email
-    #sendEmail($email)
+    sendEmail($email)
 
 }
 
